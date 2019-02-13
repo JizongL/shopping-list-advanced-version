@@ -16,11 +16,21 @@ const STORE = [
     {name: "bread", checked: false}
   ];
 
+function generateShoppingListItem(shoppingList){
+    console.log('geneate shopping list element');
+    return `<li>apples</li>
+    <li>oranges</li>
+    <li>milk</li>
+    <li>bread</li>`;
+  
+}
+
+
 function renderShoppingList() {
     // this function will be responsible for rendering the shopping list in
     // the DOM
     console.log('`renderShoppingList` ran');
-    const shoppingListItemsString = '<li>apple</li>';
+    const shoppingListItemsString = generateShoppingListItem(STORE);
     $('.js-shopping-list').html(shoppingListItemsString);
   }
   
