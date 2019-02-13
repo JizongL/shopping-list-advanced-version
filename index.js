@@ -16,12 +16,25 @@ const STORE = [
     {name: "bread", checked: false}
   ];
 
+function geneateItemElement(item,itemIndex,template){
+    return `
+    <li data-item-id="${item.id}">
+      <span class="shopping-item js-shopping-item ${item.checked ? "shopping-item__checked" : ''}">${item.name}</span>
+      <div class="shopping-item-controls">
+        <button class="shopping-item-toggle js-item-toggle">
+            <span class="button-label">check</span>
+        </button>
+        <button class="shopping-item-delete js-item-delete">
+            <span class="button-label">delete</span>
+        </button>
+      </div>
+    </li>`;
+}
+
 function generateShoppingListItem(shoppingList){
     console.log('geneate shopping list element');
-    return `<li>apples</li>
-    <li>oranges</li>
-    <li>milk</li>
-    <li>bread</li>`;
+    const items = shoppingList.map((item, index)=> geneateItemElement(item,index));
+    return items.join('');
   
 }
 
@@ -37,7 +50,14 @@ function renderShoppingList() {
   
   function handleNewItemSubmit() {
     // this function will be responsible for when users add a new shopping list item
-    console.log('`handleNewItemSubmit` ran');
+    $('#js-shopping-list-form').submit(
+      function(event){
+        event.preventDefault();
+        const newItemName = $('.js-shopping-list-entry').val();
+        console.log(newItemName);
+        $('.js-shopping-list-entry').val('');
+      }
+    );
   }
   
   
